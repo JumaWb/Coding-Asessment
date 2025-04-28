@@ -28,11 +28,12 @@ public class B2CPaymentServiceImpl implements B2CPaymentService {
         try {
             // Call mock B2C Payment API (simulate)
             String response = webClient.post()
-                    .uri("http://localhost:8081/mock-b2c-payment") // your mock server endpoint
+                    .uri("http://localhost:8081/mock-b2c-payment") 
                     .bodyValue(request)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
+                    log.info("Mock server response: {}", response);
 
             TransactionLog log = TransactionLog.builder()
                     .phoneNumber(request.getPhoneNumber())
